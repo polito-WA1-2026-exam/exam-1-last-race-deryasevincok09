@@ -18,7 +18,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import db from './db.js';
 import { getUser, getUserById } from './dao-users.js';
 import { getFullNetwork } from './dao-network.js';
-import { createPlanningData } from './dao-game.js';
+import { createPlanningData, validateAndExecuteRoute } from './dao-game.js';
 
 const app = express();
 const port = 3001;
@@ -144,6 +144,26 @@ app.post('/api/games/start', isLoggedIn, async (req, res) => {
     res.status(201).json(planningData);
   } catch (err) {
     console.error('Start game error:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+app.post('/api/games/submit', isLoggedIn, async (req, res) => {
+  try {
+    const { segmentIds } = req.body;
+
+    const result = await validateAndExecuteRoute(
+      req.user.id,
+      req.session.currentGame,
+      segmentIds
+    );
+
+    delete req.session.currentGame;
+
+    res.status(201).json(result);
+  } catch (err) {
+    console.error('Submit route error:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 });

@@ -75,3 +75,16 @@ export async function startGame() {
 
   return await getJson(response);
 }
+
+export async function submitRoute(segmentIds) {
+  const response = await fetch(`${SERVER_URL}/games/submit`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ segmentIds })
+  });
+
+  return await getJson(response);
+}

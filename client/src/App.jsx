@@ -7,6 +7,7 @@ import LoginForm from './components/LoginForm';
 import Ranking from './components/Ranking';
 import GameSetup from './components/GameSetup';
 import PlanningPhase from './components/PlanningPhase';
+import ExecutionResult from './components/ExecutionResult.jsx';
 
 function ProtectedRoute({ children }) {
   const { loggedIn, checkingAuth } = useAuth();
@@ -56,6 +57,15 @@ function AppContent() {
             element={
               <ProtectedRoute>
                 <Ranking />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/game/result"
+            element={
+              <ProtectedRoute>
+                <ExecutionResult />
               </ProtectedRoute>
             }
           />
