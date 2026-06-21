@@ -10,14 +10,15 @@ app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });*/
 
-import { getFullNetwork } from './dao-network.js';
 import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
-import { getUser, getUserById } from './dao-users.js';
 import db from './db.js';
+import { getUser, getUserById } from './dao-users.js';
+import { getFullNetwork } from './dao-network.js';
+import { createPlanningData } from './dao-game.js';
 
 const app = express();
 const port = 3001;
@@ -125,6 +126,24 @@ app.get('/api/ranking', isLoggedIn, async (req, res) => {
     res.json(ranking);
   } catch (err) {
     console.error('Ranking error:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+app.post('/api/games/start', isLoggedIn, async (req, res) => {
+  try {
+    const planningData = await createPlanningData();
+
+    req.session.currentGame = {
+      startStationId: planningData.startStation.id,
+      destinationStationId: planningData.destinationStation.id,
+      planningStartedAt: Date.now()
+    };
+
+    res.status(201).json(planningData);
+  } catch (err) {
+    console.error('Start game error:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
