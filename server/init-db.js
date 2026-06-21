@@ -65,10 +65,10 @@ async function initDatabase() {
   `);
 
   const users = [
-    { username: 'alice@example.com', name: 'Alice', password: 'password' },
-    { username: 'bob@example.com', name: 'Bob', password: 'password' },
-    { username: 'carol@example.com', name: 'Carol', password: 'password' }
-  ];
+  { username: 'derya@example.com', name: 'Derya', password: 'person1' },
+  { username: 'mine@example.com', name: 'Mine', password: 'person2' },
+  { username: 'emir@example.com', name: 'Emir', password: 'person3' }
+];
 
   for (const user of users) {
     const salt = bcrypt.genSaltSync(10);
