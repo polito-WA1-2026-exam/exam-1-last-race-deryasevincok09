@@ -65,3 +65,13 @@ export async function getNetwork() {
 
   return await getJson(response);
 }
+
+
+export async function startGame() {
+  const response = await fetch(`${SERVER_URL}/games/start`, {
+    method: 'POST',
+    credentials: 'include'
+  });
+
+  return await getJson(response);
+}

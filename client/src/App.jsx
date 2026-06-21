@@ -6,7 +6,7 @@ import Instructions from './components/Instructions';
 import LoginForm from './components/LoginForm';
 import Ranking from './components/Ranking';
 import GameSetup from './components/GameSetup';
-import PlanningPlaceholder from './components/PlanningPlaceholder';
+import PlanningPhase from './components/PlanningPhase';
 
 function ProtectedRoute({ children }) {
   const { loggedIn, checkingAuth } = useAuth();
@@ -46,7 +46,7 @@ function AppContent() {
             path="/game/planning"
             element={
               <ProtectedRoute>
-                <PlanningPlaceholder />
+                <PlanningPhase />
               </ProtectedRoute>
             }
           />
