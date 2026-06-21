@@ -86,14 +86,14 @@ async function initDatabase() {
   await db.run(
     'INSERT INTO games (user_id, score, completed_at) VALUES (?, ?, ?)',
     1,
-    28,
+    10,
     new Date().toISOString()
   );
 
   await db.run(
     'INSERT INTO games (user_id, score, completed_at) VALUES (?, ?, ?)',
     2,
-    34,
+    15,
     new Date().toISOString()
   );
 
