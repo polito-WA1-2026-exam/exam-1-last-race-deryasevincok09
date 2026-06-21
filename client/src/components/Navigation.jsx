@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 function Navigation() {
@@ -17,6 +17,7 @@ function Navigation() {
 
         <div className="navbar-nav me-auto">
           <Link className="nav-link" to="/">Instructions</Link>
+          {loggedIn && <Link className="nav-link" to="/game">Game</Link>}
           {loggedIn && <Link className="nav-link" to="/ranking">Ranking</Link>}
         </div>
 

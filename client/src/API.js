@@ -57,3 +57,11 @@ export async function getRanking() {
 
   return await getJson(response);
 }
+
+export async function getNetwork() {
+  const response = await fetch(`${SERVER_URL}/network`, {
+    credentials: 'include'
+  });
+
+  return await getJson(response);
+}

@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 function Instructions() {
@@ -6,7 +6,7 @@ function Instructions() {
 
   return (
     <div className="card">
-      <div className="card-body">
+      <div className="card-body text-center">
         <h1 className="card-title">Last Race</h1>
 
         <p>
@@ -21,9 +21,9 @@ function Instructions() {
         </p>
 
         {loggedIn ? (
-          <button className="btn btn-primary" disabled>
-            Start game - coming next
-          </button>
+          <Link className="btn btn-primary" to="/game">
+            Start game
+          </Link>
         ) : (
           <Link className="btn btn-primary" to="/login">
             Login to play
